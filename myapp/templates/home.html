@@ -1,0 +1,30 @@
+<!-- myapp/templates/home.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Fachschaft Medien</h1>
+    </header>
+
+    <main>
+        <h2>Alle Inhalte</h2>
+        <div class="tile-container">
+            {% for page in all_pages %}
+                <div class="tile">
+                    <h3><a href="{% url 'application_detail' page.id %}">{{ page.title }}</a></h3>
+                    <p> category:{{ page.category }}</p>
+                </div>
+            {% empty %}
+                <p>Keine Inhalte vorhanden.</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
